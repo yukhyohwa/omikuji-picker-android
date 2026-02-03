@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>御神籤 - Omikuji Picker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">Omikuji</h1>
+            <p class="subtitle">Your Random Choice Helper</p>
+        </header>
+
+        <main class="app-stage">
+            <div id="omikuji-box" class="omikuji-container">
+                <div class="box-shadow"></div>
+                <div class="omikuji-cylinder">
+                    <div class="cylinder-top"></div>
+                    <div class="cylinder-body">
+                    </div>
+                </div>
+                <div id="stick" class="omikuji-stick">
+                    <span class="stick-label"></span>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button id="draw-btn" class="draw-button">
+                    <span class="btn-inner">SHAKE BOX</span>
+                </button>
+            </div>
+        </main>
+
+        <div id="result-overlay" class="result-overlay hidden">
+            <div class="result-card">
+                <div class="decoration left"></div>
+                <div class="decoration right"></div>
+                <div class="result-header">Your Result</div>
+                <div id="result-content" class="result-text"></div>
+                <button id="close-result" class="close-btn">Close</button>
+            </div>
+        </div>
+
+        <button id="config-toggle" class="config-btn" title="Settings">⚙</button>
+
+        <aside id="config-panel" class="config-panel hidden">
+            <div class="config-header">
+                <h2>Settings</h2>
+                <button id="config-close">×</button>
+            </div>
+            <div class="config-body">
+                <div class="input-group">
+                    <label>Number of Lots (1-24)</label>
+                    <input type="range" id="lot-count" min="1" max="24" value="10">
+                    <span id="count-display">10</span>
+                </div>
+                <div class="lot-inputs-container" id="lot-inputs">
+                    <!-- Dinamically generated inputs -->
+                </div>
+                <button id="save-config" class="save-btn">Apply Changes</button>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

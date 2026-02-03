@@ -1,0 +1,353 @@
+:root {
+    --bg-color: #F8F7F2;
+    /* Off-white Museum Paper */
+    --accent-red: #B22222;
+    /* Refined Deep Red */
+    --text-primary: #1A1A1A;
+    /* Soft Black */
+    --text-secondary: #707070;
+    --gold: #A6894A;
+    /* Antique Gold */
+    --cylinder-bg: #222222;
+    /* Matte Charcoal */
+    --font-serif: 'Noto Serif JP', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    padding: 8vh 2rem 5vh;
+    position: relative;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 0.8rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.2rem;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+/* App Stage - Focused Minimalist */
+.app-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: -5vh;
+}
+
+.omikuji-container {
+    position: relative;
+    width: 80px;
+    height: 200px;
+    /* Slimmer, more elegant proportions */
+    perspective: 1000px;
+}
+
+.omikuji-cylinder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--cylinder-bg);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.cylinder-top {
+    position: absolute;
+    top: -4px;
+    width: calc(100% + 8px);
+    height: 12px;
+    background: var(--text-primary);
+    border-radius: 2px;
+}
+
+.cylinder-body {
+    /* Perfectly plain matte body for a modern look */
+}
+
+/* The Stick - Traditional but sharp */
+.omikuji-stick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 140px;
+    background: #FFFEF9;
+    border: 1px solid #DDD;
+    transform: translate(-50%, -50%) scaleY(0);
+    transform-origin: bottom;
+    z-index: -1;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.omikuji-stick.pop {
+    transform: translate(-50%, -180px) scaleY(1);
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stick-label {
+    writing-mode: vertical-rl;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent-red);
+    letter-spacing: 0.1rem;
+}
+
+.action-area {
+    margin-top: 5vh;
+}
+
+.draw-button {
+    background: none;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    padding: 0.8rem 3.5rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    letter-spacing: 0.3rem;
+    cursor: pointer;
+    transition: all 0.4s;
+    text-transform: uppercase;
+}
+
+.draw-button:hover {
+    background: var(--text-primary);
+    color: white;
+}
+
+.draw-button:active {
+    transform: scale(0.96);
+}
+
+/* Result Overlay - Soft Glassmorphism */
+.result-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s;
+}
+
+.result-overlay.hidden {
+    display: none;
+}
+
+.result-card {
+    background: white;
+    padding: 4rem 2rem;
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.result-header {
+    font-size: 0.7rem;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.result-text {
+    writing-mode: vertical-rl;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin: 0 auto 3rem;
+    letter-spacing: 0.5rem;
+}
+
+.close-btn {
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+}
+
+/* Settings Drawer */
+.config-btn {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.config-btn:hover {
+    opacity: 1;
+}
+
+.config-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    padding: 3rem 2rem;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.config-panel:not(.hidden) {
+    transform: translateX(0);
+}
+
+.config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Vertically center */
+    margin-bottom: 3rem;
+}
+
+#config-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: 200;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.3s;
+}
+
+#config-close:hover {
+    color: var(--text-primary);
+}
+
+.config-header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+}
+
+.lot-inputs-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.lot-input-wrapper {
+    display: flex;
+    border-bottom: 1px solid #EEE;
+    padding: 8px 0;
+}
+
+.lot-input-wrapper span {
+    width: 30px;
+    font-size: 0.8rem;
+    color: #BBB;
+}
+
+.lot-input-wrapper input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--text-primary);
+    color: white;
+    border: none;
+    margin-top: 2rem;
+    letter-spacing: 0.2rem;
+    cursor: pointer;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(4px);
+    }
+
+    50% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shaking {
+    animation: shake 0.15s infinite;
+}

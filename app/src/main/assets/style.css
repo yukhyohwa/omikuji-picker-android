@@ -21,7 +21,10 @@
 
 body {
     background-color: var(--bg-color);
-    background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+    background-image: radial-gradient(#ebeae5 15%, transparent 16%),
+        radial-gradient(#ebeae5 15%, transparent 16%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
     color: var(--text-primary);
     font-family: var(--font-serif);
     height: 100vh;
@@ -222,11 +225,16 @@ header {
     cursor: pointer;
 }
 
-/* Settings Drawer */
-.config-btn {
+/* Bottom Controls */
+.bottom-controls {
     position: absolute;
     bottom: 2rem;
     right: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.icon-btn {
     background: none;
     border: none;
     color: var(--text-secondary);
@@ -234,38 +242,50 @@ header {
     cursor: pointer;
     opacity: 0.5;
     transition: opacity 0.3s;
+    padding: 0.5rem;
 }
 
-.config-btn:hover {
+.icon-btn:hover {
     opacity: 1;
 }
 
-.config-panel {
+/* Side Panels */
+.side-panel {
     position: fixed;
     top: 0;
-    right: 0;
     width: 100%;
     height: 100%;
     background: white;
     z-index: 2000;
     padding: 3rem 2rem;
-    transform: translateX(100%);
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
 }
 
-.config-panel:not(.hidden) {
+.side-panel.right {
+    right: 0;
+    transform: translateX(100%);
+}
+
+.side-panel.left {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.side-panel:not(.hidden) {
     transform: translateX(0);
 }
 
-.config-header {
+.panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Vertically center */
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    flex-shrink: 0;
 }
 
-#config-close {
+.panel-header button {
     background: none;
     border: none;
     font-size: 1.8rem;
@@ -277,22 +297,41 @@ header {
     transition: color 0.3s;
 }
 
-#config-close:hover {
+.panel-header button:hover {
     color: var(--text-primary);
 }
 
-.config-header h2 {
+.panel-header h2 {
     font-size: 1.2rem;
     font-weight: 400;
     letter-spacing: 0.2rem;
 }
 
+.panel-body {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Config Specifics */
 .lot-inputs-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 15px;
-    max-height: 50vh;
+    /* max-height handled by flex panel-body */
     overflow-y: auto;
+    flex: 1;
+}
+
+select#preset-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
 }
 
 .lot-input-wrapper {
@@ -324,6 +363,58 @@ header {
     margin-top: 2rem;
     letter-spacing: 0.2rem;
     cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* History Specifics */
+.history-list {
+    list-style: none;
+    flex: 1;
+    overflow-y: auto;
+    border-top: 1px solid #eee;
+}
+
+.history-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-content {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.history-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.empty-history {
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.text-btn {
+    background: none;
+    border: 1px solid #ddd;
+    color: var(--text-secondary);
+    padding: 0.8rem;
+    width: 100%;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.text-btn:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
 }
 
 @keyframes shake {

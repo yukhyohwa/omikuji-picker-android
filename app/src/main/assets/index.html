@@ -49,14 +49,36 @@
             </div>
         </div>
 
-        <button id="config-toggle" class="config-btn" title="Settings">⚙</button>
+        <div class="bottom-controls">
+            <button id="history-toggle" class="icon-btn" title="History">📜</button>
+            <button id="config-toggle" class="icon-btn" title="Settings">⚙</button>
+        </div>
 
-        <aside id="config-panel" class="config-panel hidden">
-            <div class="config-header">
+        <aside id="history-panel" class="side-panel left hidden">
+            <div class="panel-header">
+                <h2>History</h2>
+                <button id="history-close">×</button>
+            </div>
+            <div class="panel-body">
+                <ul id="history-list" class="history-list">
+                    <!-- Dynamically generated history -->
+                </ul>
+                <button id="clear-history" class="text-btn">Clear History</button>
+            </div>
+        </aside>
+
+        <aside id="config-panel" class="side-panel right hidden">
+            <div class="panel-header">
                 <h2>Settings</h2>
                 <button id="config-close">×</button>
             </div>
-            <div class="config-body">
+            <div class="panel-body">
+                <div class="input-group">
+                    <label for="preset-select">Preset</label>
+                    <select id="preset-select">
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
                 <div class="input-group">
                     <label>Number of Lots (1-24)</label>
                     <input type="range" id="lot-count" min="1" max="24" value="10">

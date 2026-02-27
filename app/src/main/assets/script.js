@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             div.className = 'lot-input-wrapper';
             div.innerHTML = `
                 <span>${i + 1}</span>
-                <input type="text" value="${lot.content}" data-index="${i}" maxlength="10">
+                <input type="text" value="${lot.content}" data-index="${i}" maxlength="20">
             `;
             lotInputsContainer.appendChild(div);
         }

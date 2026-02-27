@@ -18,8 +18,8 @@ def run(playwright):
     if first_input.input_value() != "Pizza":
         print("Error: Restaurant preset not loaded correctly")
 
-    # Close config panel
-    page.click("#config-close")
+    # Apply changes (important!)
+    page.click("#save-config")
 
     # 2. Verify Draw and History
     # Click draw button
@@ -31,6 +31,11 @@ def run(playwright):
     # Get result text
     result_text = page.locator("#result-content").text_content()
     print(f"Result: {result_text}")
+
+    # Verify result is one of the restaurant items
+    restaurant_items = ["Pizza", "Sushi", "Burger", "Pasta", "Salad", "Chinese", "Tacos", "Steak", "Ramen", "Curry"]
+    if result_text not in restaurant_items:
+        print(f"Error: Result '{result_text}' not found in restaurant list")
 
     # Close result overlay
     page.click("#close-result")
@@ -47,7 +52,7 @@ def run(playwright):
         print("Error: History item does not match result")
 
     # Take screenshot of history panel
-    page.screenshot(path="verification_history.png")
+    page.screenshot(path="verification_history_restaurant.png")
 
     browser.close()
 

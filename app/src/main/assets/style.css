@@ -62,6 +62,15 @@ header {
     text-transform: uppercase;
 }
 
+.group-label {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-red);
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
 /* App Stage - Focused Minimalist */
 .app-stage {
     flex: 1;
@@ -208,12 +217,15 @@ header {
 }
 
 .result-text {
-    writing-mode: vertical-rl;
-    font-size: 3rem;
-    font-weight: 400;
+    /* writing-mode: vertical-rl; REMOVED to support long text */
+    writing-mode: horizontal-tb;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--text-primary);
     margin: 0 auto 3rem;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.1rem;
+    word-break: break-word;
+    line-height: 1.4;
 }
 
 .close-btn {
@@ -292,33 +304,119 @@ header {
 }
 
 .lot-inputs-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    max-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 40vh;
     overflow-y: auto;
+    margin-bottom: 2rem;
+    padding-right: 5px; /* For scrollbar */
 }
 
 .lot-input-wrapper {
     display: flex;
-    border-bottom: 1px solid #EEE;
-    padding: 8px 0;
-}
-
-.lot-input-wrapper span {
-    width: 30px;
-    font-size: 0.8rem;
-    color: #BBB;
+    align-items: center;
+    gap: 10px;
 }
 
 .lot-input-wrapper input {
+    flex: 1;
     border: 1px solid #CCC;
     border-radius: 4px;
-    padding: 8px;
+    padding: 10px;
     outline: none;
-    width: 100%;
     font-size: 0.9rem;
     font-family: inherit;
+}
+
+.remove-item-btn {
+    background: none;
+    border: 1px solid #DDD;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.remove-item-btn:hover {
+    background: #FFEEEB;
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+.group-controls {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 1.5rem;
+}
+
+.group-controls label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.group-select-row {
+    display: flex;
+    gap: 10px;
+}
+
+#group-select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+#add-group-btn, #delete-group-btn {
+    width: 40px;
+    background: var(--text-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+#delete-group-btn {
+    background: #DDD;
+    color: var(--text-secondary);
+}
+
+#delete-group-btn:hover {
+    background: var(--accent-red);
+    color: white;
+}
+
+.list-controls {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.add-btn {
+    background: none;
+    border: 1px dashed var(--gold);
+    color: var(--gold);
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.1rem;
+    width: 100%;
+}
+
+.add-btn:hover {
+    background: #FFFDF5;
+    border-style: solid;
 }
 
 .save-btn {

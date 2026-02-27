@@ -17,6 +17,7 @@
         <header>
             <h1 class="title">Omikuji</h1>
             <p class="subtitle">Your Random Choice Helper</p>
+            <p id="current-group-label" class="group-label">Current: Standard</p>
         </header>
 
         <main class="app-stage">
@@ -57,14 +58,25 @@
                 <button id="config-close">×</button>
             </div>
             <div class="config-body">
-                <div class="input-group">
-                    <label>Number of Lots (1-24)</label>
-                    <input type="range" id="lot-count" min="1" max="24" value="10">
-                    <span id="count-display">10</span>
+                <!-- Group Selection -->
+                <div class="group-controls">
+                    <label>Group</label>
+                    <div class="group-select-row">
+                        <select id="group-select"></select>
+                        <button id="add-group-btn" title="New Group">+</button>
+                        <button id="delete-group-btn" title="Delete Group">-</button>
+                    </div>
                 </div>
+
+                <!-- Item List -->
                 <div class="lot-inputs-container" id="lot-inputs">
                     <!-- Dinamically generated inputs -->
                 </div>
+
+                <div class="list-controls">
+                     <button id="add-item-btn" class="add-btn">+ Add Item</button>
+                </div>
+
                 <button id="save-config" class="save-btn">Apply Changes</button>
             </div>
         </aside>

@@ -1,0 +1,32 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group>
+        <!-- Stick Body -->
+        <path
+            android:fillColor="#E8DCC5"
+            android:strokeColor="#C0A060"
+            android:strokeWidth="1"
+            android:pathData="M51,10 L57,10 L57,80 L51,80 Z" />
+
+        <!-- Stick Red Marking -->
+        <path
+            android:fillColor="#B22222"
+            android:pathData="M53,15 L55,15 L55,25 L53,25 Z" />
+
+        <!-- Hexagon Box -->
+        <path
+            android:fillColor="#333333"
+            android:strokeColor="#111111"
+            android:strokeWidth="2"
+            android:pathData="M34,90 L74,90 L94,60 L74,30 L34,30 L14,60 Z" />
+
+        <!-- Subtle Highlight on top edge -->
+        <path
+            android:strokeColor="#555555"
+            android:strokeWidth="2"
+            android:pathData="M36,32 L72,32" />
+    </group>
+</vector>

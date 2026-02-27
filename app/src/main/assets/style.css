@@ -104,6 +104,7 @@ header {
 
 .cylinder-body {
     /* Perfectly plain matte body for a modern look */
+    background: linear-gradient(90deg, #333 0%, #111 50%, #333 100%);
 }
 
 /* The Stick - Traditional but sharp */
@@ -113,8 +114,8 @@ header {
     left: 50%;
     width: 16px;
     height: 140px;
-    background: #FFFEF9;
-    border: 1px solid #DDD;
+    background: #E8DCC5;
+    border: 1px solid #C0A060;
     transform: translate(-50%, -50%) scaleY(0);
     transform-origin: bottom;
     z-index: -1;
@@ -143,9 +144,9 @@ header {
 }
 
 .draw-button {
-    background: none;
-    border: 1px solid var(--text-primary);
-    color: var(--text-primary);
+    background: var(--accent-red);
+    border: none;
+    color: white;
     padding: 0.8rem 3.5rem;
     font-size: 0.9rem;
     font-family: inherit;
@@ -153,6 +154,7 @@ header {
     cursor: pointer;
     transition: all 0.4s;
     text-transform: uppercase;
+    border-radius: 4px;
 }
 
 .draw-button:hover {
@@ -192,6 +194,8 @@ header {
     text-align: center;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
     position: relative;
+    border: 4px double var(--accent-red);
+    border-radius: 8px;
 }
 
 .result-header {
@@ -308,7 +312,9 @@ header {
 }
 
 .lot-input-wrapper input {
-    border: none;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    padding: 8px;
     outline: none;
     width: 100%;
     font-size: 0.9rem;
@@ -318,12 +324,13 @@ header {
 .save-btn {
     width: 100%;
     padding: 1.2rem;
-    background: var(--text-primary);
+    background: var(--accent-red);
     color: white;
     border: none;
     margin-top: 2rem;
     letter-spacing: 0.2rem;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 @keyframes shake {

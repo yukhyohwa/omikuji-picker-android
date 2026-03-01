@@ -1,176 +1,149 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Omikuji - Random Picker</title>
+    <title>Decision Master Pro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1 class="title">Omikuji</h1>
-            <p class="subtitle">Your Random Choice Helper</p>
+            <h1 class="title">Decision</h1>
+            <p class="subtitle">PREMIUM PICKER</p>
+
+            <div class="mode-selector">
+                <button class="mode-tab active" data-mode="omikuji">🧧 抽签</button>
+                <button class="mode-tab" data-mode="dice">🎲 骰子</button>
+                <button class="mode-tab" data-mode="cards">🃏 抽卡</button>
+            </div>
+
+            <div id="current-group-badge" class="group-label">Standard</div>
         </header>
 
         <main class="app-stage">
-            <!-- Tab 1: Omikuji -->
-            <div id="tab-omikuji" class="tab-content active">
+            <!-- Omikuji View -->
+            <div id="omikuji-view" class="view-container">
                 <div id="omikuji-box" class="omikuji-container">
-                    <div class="box-shadow"></div>
                     <div class="omikuji-cylinder">
                         <div class="cylinder-top"></div>
-                        <div class="cylinder-body">
-                        </div>
                     </div>
                     <div id="stick" class="omikuji-stick">
                         <span class="stick-label"></span>
                     </div>
                 </div>
+            </div>
 
-                <div class="action-area">
-                    <button id="draw-btn" class="draw-button">
-                        <span class="btn-inner">SHAKE BOX</span>
-                    </button>
+            <!-- Dice View -->
+            <div id="dice-view" class="view-container hidden">
+                <div class="dice-scene">
+                    <div id="dice" class="dice">
+                        <div class="face front">1</div>
+                        <div class="face back">6</div>
+                        <div class="face right">3</div>
+                        <div class="face left">4</div>
+                        <div class="face top">2</div>
+                        <div class="face bottom">5</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tab 2: Dice -->
-            <div id="tab-dice" class="tab-content hidden">
-                 <div class="dice-scene">
-                    <div class="dice-cube" id="dice">
-                        <div class="face front">
-                            <span class="dot d1"></span>
-                        </div>
-                        <div class="face back">
-                            <span class="dot d1"></span>
-                            <span class="dot d2"></span>
-                            <span class="dot d3"></span>
-                            <span class="dot d4"></span>
-                            <span class="dot d5"></span>
-                            <span class="dot d6"></span>
-                        </div>
-                        <div class="face right">
-                            <span class="dot d1"></span>
-                            <span class="dot d2"></span>
-                            <span class="dot d3"></span>
-                        </div>
-                        <div class="face left">
-                            <span class="dot d1"></span>
-                            <span class="dot d2"></span>
-                            <span class="dot d3"></span>
-                            <span class="dot d4"></span>
-                        </div>
-                        <div class="face top">
-                            <span class="dot d1"></span>
-                            <span class="dot d2"></span>
-                        </div>
-                        <div class="face bottom">
-                            <span class="dot d1"></span>
-                            <span class="dot d2"></span>
-                            <span class="dot d3"></span>
-                            <span class="dot d4"></span>
-                            <span class="dot d5"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-area">
-                    <button id="roll-dice-btn" class="draw-button">
-                        <span class="btn-inner">ROLL DICE</span>
-                    </button>
+            <!-- Cards View -->
+            <div id="cards-view" class="view-container hidden">
+                <div id="card-deck" class="card-deck">
+                    <!-- Cards will be generated here -->
                 </div>
             </div>
 
-            <!-- Tab 3: Cards -->
-            <div id="tab-cards" class="tab-content hidden">
-                <div class="card-scene">
-                    <div class="card-container" id="card">
-                        <div class="card-face card-back">
-                            <div class="card-pattern"></div>
-                        </div>
-                        <div class="card-face card-front">
-                            <div class="card-corner top-left">
-                                <span class="card-value">A</span>
-                                <span class="card-suit">♠</span>
-                            </div>
-                            <div class="card-center">
-                                <span class="card-suit-large">♠</span>
-                            </div>
-                            <div class="card-corner bottom-right">
-                                <span class="card-value">A</span>
-                                <span class="card-suit">♠</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-area">
-                    <button id="draw-card-btn" class="draw-button">
-                        <span class="btn-inner">DRAW CARD</span>
-                    </button>
-                </div>
+            <div class="action-area">
+                <button id="draw-btn" class="draw-button">开始抽取</button>
             </div>
         </main>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-item active" data-target="tab-omikuji">
-                <div class="nav-icon">🥢</div>
-                <span class="nav-label">Omikuji</span>
-            </button>
-            <button class="nav-item" data-target="tab-dice">
-                <div class="nav-icon">🎲</div>
-                <span class="nav-label">Dice</span>
-            </button>
-            <button class="nav-item" data-target="tab-cards">
-                <div class="nav-icon">🃏</div>
-                <span class="nav-label">Cards</span>
-            </button>
-        </nav>
+        <div class="bottom-controls">
+            <button id="history-toggle" class="icon-btn" title="History">📜</button>
+            <button id="config-toggle" class="icon-btn" title="Settings">⚙️</button>
+        </div>
 
-        <div id="result-overlay" class="result-overlay hidden">
-            <div class="result-card">
-                <div class="result-header">Your Result</div>
-                <div id="result-content" class="result-text"></div>
-                <button id="close-result" class="close-btn">Close</button>
+        <!-- Result Modal -->
+        <div id="result-modal" class="modal">
+            <div class="modal-content result-card">
+                <div class="result-header">Your destiny</div>
+                <div id="result-content" class="result-text">---</div>
+                <button id="close-result" class="primary-btn">Accept</button>
             </div>
         </div>
 
-        <button id="config-toggle" class="config-btn" title="Settings">⚙</button>
-
-        <aside id="config-panel" class="config-panel hidden">
-            <div class="config-header">
-                <h2>Settings</h2>
-                <button id="config-close">Done</button>
+        <!-- History Modal -->
+        <div id="history-modal" class="modal">
+            <div class="modal-content">
+                <div class="panel-header">
+                    <h2>History</h2>
+                    <button class="close-panel" id="history-close">&times;</button>
+                </div>
+                <div id="history-list" class="history-list scroll-area">
+                    <!-- History items here -->
+                </div>
+                <button id="clear-history" class="dashed-btn">Clear All History</button>
             </div>
-            <div class="config-body">
-                <div class="settings-section">
-                    <h3>Theme</h3>
-                    <div class="theme-selector">
-                        <button class="theme-opt active" data-theme="system">System</button>
-                        <button class="theme-opt" data-theme="light">Light</button>
-                        <button class="theme-opt" data-theme="dark">Dark</button>
-                    </div>
+        </div>
+
+        <!-- Settings Modal (Side Panel style via CSS) -->
+        <div id="config-modal" class="modal">
+            <div class="modal-content">
+                <div class="panel-header">
+                    <h2>Settings</h2>
+                    <button class="close-panel" id="config-close">&times;</button>
                 </div>
 
-                <div class="settings-section">
-                    <h3>Omikuji Lots</h3>
-                    <div class="input-group">
-                        <label>Count (1-24)</label>
-                        <div class="slider-container">
-                             <input type="range" id="lot-count" min="1" max="24" value="10">
-                             <span id="count-display">10</span>
+                <div class="scroll-area">
+                    <!-- Presets -->
+                    <div class="field-group">
+                        <label>Load Presets</label>
+                        <select id="preset-select">
+                            <option value="" disabled selected>选择一个预设模式...</option>
+                            <option value="standard">🧧 传统求签 (大吉/凶)</option>
+                            <option value="dice">🎲 欢乐掷骰 (1-6)</option>
+                            <option value="cards">🃏 扑克抽牌 (J/Q/K/A)</option>
+                            <option value="restaurant">🍱 餐厅转盘 (吃什么)</option>
+                            <option value="food">🥤 下午茶点 (奶茶咖啡)</option>
+                            <option value="yesno">✔️ 是/否决策 (确定/不行)</option>
+                            <option value="lucky_color">🎨 每日幸运色</option>
+                        </select>
+                    </div>
+
+                    <!-- Groups -->
+                    <div class="field-group">
+                        <label>Your Collections</label>
+                        <div class="row-actions">
+                            <select id="group-select"></select>
+                            <button id="delete-group-btn" class="small-icon-btn"
+                                style="background:rgba(239,68,68,0.1); color:#ef4444">🗑️</button>
                         </div>
                     </div>
-                    <div class="lot-inputs-container" id="lot-inputs">
-                        <!-- Dynamically generated inputs -->
+
+                    <div class="field-group">
+                        <button id="add-group-btn" class="dashed-btn">+ Create New Collection</button>
                     </div>
+
+                    <hr style="border:0; border-top:1px solid var(--glass-border); margin:1.5rem 0">
+
+                    <!-- Items -->
+                    <div class="field-group">
+                        <label>Items in Collection</label>
+                        <div id="lot-inputs">
+                            <!-- Dynamic inputs -->
+                        </div>
+                    </div>
+
+                    <button id="add-item-btn" class="dashed-btn">+ Add Selection Item</button>
                 </div>
 
-                <button id="save-config" class="save-btn">Save Changes</button>
+                <button id="save-config" class="primary-btn" style="width:100%">Save & Apply</button>
             </div>
-        </aside>
+        </div>
     </div>
 
     <script src="script.js"></script>

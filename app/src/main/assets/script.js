@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentGroup = getCurrentGroup();
         if (!currentGroup.items || currentGroup.items.length === 0) {
-            alert("This collection is empty! Add some items in Settings.");
+            alert("No items in this group! Add some items in Settings.");
             return;
         }
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Show result after stick pops
             setTimeout(() => {
-                showResult("Omikuji Result", selectedLot.content);
+                showResult("Omikuji Result", selectedLot.content, true);
                 isDrawing = false;
             }, 1000);
 
@@ -319,14 +319,20 @@ document.addEventListener('DOMContentLoaded', () => {
     /* -------------------------------------------------------------------------- */
     /*                               Result Overlay                               */
     /* -------------------------------------------------------------------------- */
-    function showResult(title, content) {
+    function showResult(title, content, isVertical = false) {
         resultHeader.textContent = title;
         resultContent.textContent = content;
 
-        if (content.length > 5) {
-            resultContent.style.fontSize = "2rem";
+        // Toggle vertical mode class
+        resultContent.classList.toggle('vertical', isVertical);
+
+        // Adjust font size based on length
+        if (content.length > 10) {
+            resultContent.style.fontSize = "1.8rem";
+        } else if (content.length > 5) {
+            resultContent.style.fontSize = "2.4rem";
         } else {
-            resultContent.style.fontSize = "3rem";
+            resultContent.style.fontSize = "3.2rem";
         }
 
         resultOverlay.classList.remove('hidden');
